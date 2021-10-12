@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books Registration Page</title>
+    <style>
+        body {
+            background-image: url("https://wallpaperaccess.com/full/3876089.jpg");
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        input[type=text], select, date {
+            width: 30%;
+            background-color:wheat;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=submit], input[type=date] {
+            width: 10%;
+            color:wheat;
+            background-color: #855b0d;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=file] {
+            width: 5%;
+        }
+    </style>
+</head>
+<body>
+<h1 style="margin-left: 40%; color: wheat">REGISTER A NEW BOOK</h1>
+<form action="/register" method="POST" enctype="multipart/form-data">
+    <input type="text" placeholder="name" name="name">
+    <input type="text" placeholder="author" name="author">
+    <select name="genre">
+        <option value="Historical">Historical</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Detective">Detective</option>
+    </select>
+    <input type="date" placeholder="publishdate" name="publishdate">
+    <input type="text" placeholder="description" name="description">
+    <input type="file" name="image">
+    <input type="submit" value="Register Book">
+</form>
+
+</body>
+</html>

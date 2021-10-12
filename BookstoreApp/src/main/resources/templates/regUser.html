@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-image: url("https://wallpaperaccess.com/full/3876089.jpg");
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        input[type=text], input[type=email], input[type=password], select {
+            width: 30%;
+            background-color:wheat;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=submit] {
+            width: 10%;
+            color:wheat;
+            background-color: #855b0d;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<p style="margin-left:33%; color:wheat; font-size:70px">Welcome to BookStore</p>
+<form action="/regUser" method="POST" enctype="multipart/form-data">
+    <input type="text" placeholder="name" name="name">
+    <input type="text" placeholder="surname" name="surname">
+    <input type="email" placeholder="email" name="email">
+    <select name="userType">
+        <option value="USER">User</option>
+        <option value="ADMIN">Administator</option>
+    </select>
+    <input type="password" placeholder="password" name="password">
+    <input type="submit" value="Register">
+</form>
+
+</body>
+</html>

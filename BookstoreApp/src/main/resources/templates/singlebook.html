@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your book</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+        @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+        body {
+            font-family: 'Indie Flower', cursive !important;
+            background-image: url("https://images.unsplash.com/photo-1514474959185-1472d4c4e0d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1934&q=80");
+            margin: 0px;
+            padding: 0px;
+        }
+
+        a {
+            position: absolute;
+            right: 550px;
+            top: 750px;
+        }
+        a {
+            background-color: #3a1902;
+            color: #ead9d9;
+            padding: 1em 1.5em;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        ::selection {
+            background: transparent;
+        }
+
+        h4 {
+            font-size: 26px;
+            line-height: 1px;
+            font-family: 'Amatic SC', cursive !important;
+        }
+
+        .color1{color:black}/*MOUNTAIN MEADOW*/
+        .color2{color:black/*TALL POPPY*/}
+
+
+        .card {
+            color: #013243; /*SHERPA BLUE*/
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 400px;
+            background: #e0e1dc;
+            transform-style: preserve-3d;
+            transform: translate(-50%,-50%) perspective(2000px);
+            box-shadow: inset 300px 0 50px rgba(0,0,0,.5), 20px 0 60px rgba(0,0,0,.5);
+            transition: 1s;
+        }
+
+        .card:hover {
+            transform: translate(-50%,-50%) perspective(2000px) rotate(15deg) scale(1.2);
+            box-shadow: inset 20px 0 50px rgba(0,0,0,.5), 0 10px 100px rgba(0,0,0,.5);
+        }
+
+        .card:before {
+            content:'';
+            position: absolute;
+            top: -5px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #BAC1BA;
+            transform-origin: bottom;
+            transform: skewX(-45deg);
+        }
+
+        .card:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -5px;
+            width: 5px;
+            height: 100%;
+            background: #92A29C;
+            transform-origin: left;
+            transform: skewY(-45deg);
+        }
+
+        .card .imgBox {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-origin: left;
+            transition: .7s;
+        }
+
+        .card .bark {
+            position: absolute;
+            background: #e0e1dc;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: .7s;
+        }
+
+        .card .imgBox img {
+            min-width: 250px;
+            max-height: 500px;
+        }
+
+        .card:hover .imgBox {
+            transform: rotateY(-135deg);
+        }
+
+        .card:hover .bark {
+            opacity: 1;
+            transition: .6s;
+            box-shadow: 300px 200px 100px rgba(0, 0, 0, .4) inset;
+        }
+
+        .card .details {
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            padding: 0 0 0 10px;
+            z-index: -1;
+            margin-top: 20px;
+        }
+
+        .card .details p div {
+            font-size: 15px;
+            line-height: 5px;
+            transform: rotate(-10deg);
+            padding: 0 0 0 20px;
+        }
+
+        .card .details h4 {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="imgBox">
+        <div class="bark"></div>
+        <img th:src="@{${'/getImage?image=' + bookinfo.imageUrl}}" style="width: 300px; height: 400px;">
+    </div>
+    <div class="details">
+        <h4 class="color1"><td th:text="${bookinfo.name}"></td></h4>
+            <h4 th:text="${bookinfo.author}" class="color2 margin"></h4>
+                <p style="color: black">The genre of this book is :</p>
+                <p><td th:text="${bookinfo.genre}"></td></p>
+                <p style="color: black">Description of book</p>
+                <div><td th:text="${bookinfo.description}"></td></div>
+
+                <p style="color: darkred" class="text-right">Book Published</p>
+                <p class="text-right"><td th:text="${bookinfo.publishdate}"></p>
+    </div>
+</div>
+
+<a th:href="@{/bookslist}">GO TO LIBRARY</a>
+
+</body>
+</html>

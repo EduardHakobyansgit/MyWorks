@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of books</title>
+    <style>
+        body {
+            background-image: url("https://wallpaperaccess.com/full/3876089.jpg");
+        }
+
+        table, td, th {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table {
+            background-color: beige;
+            border-collapse: collapse;
+            width: 100%;
+            box-shadow: 10px 5px 5px gray;
+        }
+
+        th, td {
+            padding: 15px;
+        }
+
+        th {
+            background-color: blanchedalmond;
+        }
+
+    </style>
+</head>
+<body>
+
+<div>
+    <H1 style="margin-left: 40%; color:wheat">YOUR LIBRARY</H1>
+    <p th:text="'Hi, ' + ${user1.name}" style="position: absolute;
+            right: 450px;
+            top: 10px;
+            background-color: #3a1902;
+            color: wheat;
+            padding: 0.5em 0.5em;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 20px;">a</p>
+    <a th:href="@{/logout}"style="position: absolute;
+            right: 320px;
+            top: 18px;
+            background-color: #3a1902;
+            color: wheat;
+            padding: 0.5em 0.5em;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: solid wheat;
+            border-radius: 20px;">Log Out</a>
+    <a th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}" th:href="@{/register}" style="position: absolute;
+            right: 20px;
+            top: 10px;
+            background-color: #3a1902;
+            color: wheat;
+            padding: 1em 1.5em;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: solid wheat;
+            border-radius: 20px;">REGISTER NEW BOOK</a>
+    <table>
+        <tr>
+            <!--            <th>ID</th>-->
+            <th>NAME</th>
+            <th>IMAGE</th>
+            <th>AUthor</th>
+            <th>Genre</th>
+            <th>Book Description</th>
+            <th>Date of publish</th>
+            <th th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">Edit</th>
+            <th th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}">Delete Book</th>
+            <th>View book info</th>
+        </tr>
+        <tr th:each="book : ${books}">
+            <!--            <td th:text="${book.id}"></td>-->
+            <td th:text="${book.name}"></td>
+            <td><img th:src="@{${'/getImage?image=' + book.imageUrl}}" style="height: 200px"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.genre}"></td>
+            <td th:text="${book.description}"></td>
+            <td th:text="${book.publishdate}"></td>
+            <td><a th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}" th:href="@{/editpage/{id}(id = ${book.id})}">Edit </a></td>
+            <td><a th:if="${#strings.contains(#authentication.principal.authorities, 'ADMIN')}" th:href="@{/delete/{id}(id = ${book.id})}">Delete</a></td>
+            <td><a th:href="@{/view/{id}(id = ${book.id})}">View</a></td>
+        </tr>
+    </table>
+
+
+</div>
+
+</body>
+</html>

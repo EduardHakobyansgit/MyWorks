@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
+    <style>
+        body {
+            background-image: url("https://wallpaperaccess.com/full/3876089.jpg");
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        input[type=text], select, date {
+            width: 30%;
+            background-color:wheat;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=submit], input[type=date] {
+            width: 10%;
+            color:wheat;
+            background-color: #855b0d;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=file] {
+            width: 5%;
+        }
+    </style>
+</head>
+<body>
+<h1 style="margin-left: 43%; color:wheat">EDIT A BOOK</h1>
+<form action="/saveBook" method="POST">
+    <input th:value="${book.id}" type="hidden" name="id" readonly >
+    <input th:value="${book.name}" type="text" placeholder="name" name="name" >
+    <input th:value="${book.author}" type="text" placeholder="author" name="author">
+    <select th:field="${book.genre}" name="genre">
+        <option value="Historical">Historical</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Detective">Detective</option>
+    </select>
+    <input th:value="${book.publishdate}" type="date" placeholder="publishdate" name="publishdate">
+    <input th:value="${book.description}" type="text" placeholder="description" name="description">
+    <input type="submit" value="Save Edited Book">
+</form>
+
+</body>
+</html>
